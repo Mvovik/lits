@@ -3,20 +3,51 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      userInput: '',
+      list: []
+    }
+  }
+
+  changeUserInput(input){
+    this.setState({
+      userInput: input
+    });
+  }
+
+  addToList(input){
+    let listArray = this.state.list;
+    listArray.push(input);
+
+    this.setState({
+      list: listArray,
+      userInput: ''
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <div className="todo-wrapper">
+          <h1>TODOS</h1>
+          <input 
+            type="text" 
+            className="userInput"
+            placeholder="What needs to be done?"
+            value={this.state.userInput}
+            onChange={(e) => this.changeUserInput(e.target.value)}
+          />
+          <button 
+            className="btn" 
+            onClick={() => this.addToList(this.state.userInput)}
+          >Submit</button>
+          <ul>
+            {this.state.list.map((val) => <li className="list">{val}</li>)}
+          </ul>
+        </div>
       </div>
     );
   }
