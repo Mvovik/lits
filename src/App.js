@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Checkbox from './components/checkbox';
+import Input from './components/input';
+import Button from './components/Button';
 
 class App extends Component {
+  getDerivedStateFromProps() {}
+
+  componentDidMount() {}
+
+  onClick = (e)=> {
+    console.log ('e.target: ', e.target);
+  }
+
   render() {
-    return (
+
+        return (
+      
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Checkbox onClick={this.onClick} />
+        <Input onClick={this.onClick} />
+        <Button onClick={this.onClick} />
       </div>
     );
   }
