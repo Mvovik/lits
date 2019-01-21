@@ -4,6 +4,10 @@ import Button from './component/Button';
 import List from './component/List';
 
 class App extends Component {
+  constructor(newProps)
+    super(newProps)
+}
+
   state = {
     value: '',
     todoList: []
