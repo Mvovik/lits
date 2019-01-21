@@ -9,9 +9,10 @@ import List from './components/list';
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
-  }
+constructor(newProps) {
+  super(newProps);
+}
+
 
   state = {
     value: '',
