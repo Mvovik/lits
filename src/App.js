@@ -7,6 +7,9 @@ import List from './components/List';
 
 class App extends Component {
 input = React.createRef();
+constructor(props) {
+  super(newProps);
+}
 state = {
   value: '',
   completed: false,
