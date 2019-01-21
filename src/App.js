@@ -5,10 +5,10 @@ import List from './component/List';
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
+  constructor(newProps) {
+    super(newProps);
   }
-
+  
   state = {
     value: '',
     todoList: []
