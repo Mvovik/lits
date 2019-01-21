@@ -8,6 +8,10 @@ import List from './component/List';
 
 class App extends Component {
 
+  constructor(newprops) {
+    super(newprops);
+  }
+
   input = React.createRef();
   state = { 
     value: '',
