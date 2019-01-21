@@ -8,8 +8,8 @@ import List from './component/List';
 
 class App extends Component {
 
-  constructor(newprops) {
-    super(newprops);
+  constructor(newProps) {
+    super(newProps);
   }
 
   input = React.createRef();
