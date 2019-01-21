@@ -1,27 +1,43 @@
 import React, { Component } from 'react';
 import './App.css';
-import Checkbox from './components/checkbox';
-import Input from './components/input';
-import Button from './components/Button';
+import Button from './component/Button';
+import List from './component/List';
 
 class App extends Component {
-  getDerivedStateFromProps() {}
-
+  state = {
+    value: '',
+    todoList: []
+  };
   componentDidMount() {}
 
-  onClick = (e)=> {
-    console.log ('e.target: ', e.target);
-  }
+  handleSubmit = event => {
+    event.preventDefault();
+    if (this.state.value) {
+      this.setState(({ todoList, value }) => ({
+        todoList: [...todoList, value],
+        value: ''
+      }));
+    }
+  };
+
+  onChange = event => {
+    this.setState({ value: event.target.value });
+  };
 
   render() {
-
-        return (
-      
-      <div className="App">
-        <Checkbox onClick={this.onClick} />
-        <Input onClick={this.onClick} />
-        <Button onClick={this.onClick} />
-      </div>
+    const { todoList, value } = this.state;
+    return (
+      <section className="todo-container">
+        <form onSubmit={this.handleSubmit}>
+          <header>
+            <h1>todos</h1>
+            <input type="text" placeholder="What needs to be done?" value={value} onChange={this.onChange} />
+          </header>
+          <section>
+            <List todoList={todoList} />
+          </section>
+        </form>
+      </section>
     );
   }
 }
