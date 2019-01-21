@@ -8,6 +8,11 @@ import List from './components/list';
 
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+
   state = {
     value: '',
     todoList: []
