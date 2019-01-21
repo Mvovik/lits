@@ -13,7 +13,7 @@ class App extends Component {
   
 input = React.createRef();
 constructor(props) {
-  super(newProps);
+  super(newnewProps);
 }
 state = {
   value: '',
