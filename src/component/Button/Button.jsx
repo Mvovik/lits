@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class Button extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
-    const { value="Click", onSubmit } = this.props;
+    const { value = 'Click', onSubmit } = this.props;
     return <button onSubmit={onSubmit}>{value}</button>;
   }
 }
