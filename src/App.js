@@ -1,53 +1,42 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+import Button from './components/Button';
+// import Input from './components/Input';
+// import Checkbox from './components/Checkbox';
+import List from './components/List';
 
 class App extends Component {
-  constructor(props){
-    super(props);
+  state = {
+    value: '',
+    todoList: []
+  };
+  componentDidMount(){}
 
-    this.state = {
-      userInput: '',
-      list: []
+  handleSubmit = (event) => {
+    event.preventDefault();
+    if(this.state.value){
+      this.setState(({ todoList, value }) => ({
+        todoList: [...todoList, value],
+        value: ''
+      }));
     }
   }
 
-  changeUserInput(input){
-    this.setState({
-      userInput: input
-    });
-  }
-
-  addToList(input){
-    let listArray = this.state.list;
-    listArray.push(input);
-
-    this.setState({
-      list: listArray,
-      userInput: ''
-    })
+  onChange = (event) => {
+    this.setState({ value: event.target.value });
   }
 
   render() {
+    const { todoList, value } = this.state;
     return (
       <div className="App">
-        <div className="todo-wrapper">
-          <h1>TODOS</h1>
-          <input 
-            type="text" 
-            className="userInput"
-            placeholder="What needs to be done?"
-            value={this.state.userInput}
-            onChange={(e) => this.changeUserInput(e.target.value)}
-          />
-          <button 
-            className="btn" 
-            onClick={() => this.addToList(this.state.userInput)}
-          >Submit</button>
-          <ul>
-            {this.state.list.map((val) => <li className="list">{val}</li>)}
-          </ul>
-        </div>
+        <form onSubmit={this.handleSubmit}>
+        <h1>todos</h1>
+          <input type='text' value={value} onChange={this.onChange} className='input-todo' placeholder='What needs to be done?'/>
+            <Button className='btn' value={'Add new'} />
+            <List todoList={todoList} />
+        </form>
       </div>
     );
   }
