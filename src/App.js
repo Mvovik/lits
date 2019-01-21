@@ -6,6 +6,11 @@ import Checkbox from './components/Checkbox';
 import List from './components/List';
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+  
 input = React.createRef();
 constructor(props) {
   super(newProps);
