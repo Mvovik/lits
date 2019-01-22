@@ -31,7 +31,7 @@ class App extends Component {
         <form onSubmit={this.handleSubmit}>
           <header>
             <h1>todos</h1>
-            <input type="text" value={value} onChange={this.onChange} />
+            <input type="text" value={value} onChange={this.onChange} className="new-todo" placeholder="What needs to be done?"/>
           </header>
           <section>
             <List todoList={todoList} />
