@@ -12,9 +12,7 @@ class App extends Component {
   }
   
 input = React.createRef();
-constructor(props) {
-  super(newnewProps);
-}
+
 state = {
   value: '',
   completed: false,
@@ -31,14 +29,12 @@ state = {
     }
     
   }
-//  todoCompletedListener = (function(todoList) {
-//   this.state.todoList.forEach(function(item) {
-//     if(item[1]) {
-//       document.getElementsByClassName('App-todo-text').setAttribute('completed');
-//     }
-//   }) 
-  
-//  })(this.state.todoList);
+
+  onDelete =(removedElement) => {
+    var newItems = this.state.todoList.filter( (item) => {
+      return item !== removedElement;
+    });
+  };
   onChange = (event) => {
     this.setState({value: event.target.value});
     
@@ -59,7 +55,7 @@ state = {
           
               {/* <Input ref={this.input} className="App-input" ></Input> */}
             {/* <Button value={'Add new'}></Button> */}
-            <List todoList={todoList}></List>   
+            <List todoList={todoList} onDelete = {this.onDelete.bind(this)}></List>   
           {/* <Checkbox onClick = {this.onChecked} /> */}
           
           </form>

@@ -14,7 +14,8 @@ class List extends Component {
             </label>
         </div>
         <p className="App-todo-text">{item}</p>
-        <DeleteButton/>
+        {/* <DeleteButton/> */}
+        <button className="App-delete-btn" onClick={ this.props.onDelete.bind(key, item) }></button>
         </li>
     }
  render() {  
