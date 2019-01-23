@@ -37,6 +37,9 @@ class App extends Component {
             <List todoList={todoList} />
           </section>
         </form>
+        <div>
+          {todoList.length} item left
+        </div>
       </section>
     );
   }
