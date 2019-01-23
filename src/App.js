@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import './App.css';
 import Button from './component/Button';
 import List from './component/List';
+import Input from './component/Input';
 
 class App extends Component {
-  
   constructor(newProps) {
     super(newProps);
+    this.state = {
+      value: '',
+      todoList: []
+    };
   }
 
-  state = {
-    value: '',
-    todoList: []
-  };
   componentDidMount() {}
 
   handleSubmit = event => {
@@ -36,7 +36,7 @@ class App extends Component {
         <form onSubmit={this.handleSubmit}>
           <header>
             <h1>todos</h1>
-            <input type="text" value={value} onChange={this.onChange} />
+            <Input value={value} onChange={this.onChange} />
           </header>
           <section>
             <List todoList={todoList} />

@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 class Input extends Component {
   render() {
-    return <input type="text" {...this.props} />;
+    const { type = 'text' } = this.props;
+    return <input type={type} {...this.props} />;
   }
 }
 
