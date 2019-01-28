@@ -1,7 +1,7 @@
 body {
   font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
   line-height: 1.4em;
-  background: #f5f5f5;
+  background: #104242; 
   color: #4d4d4d;
   margin: 0 auto;
   -webkit-font-smoothing: antialiased;
@@ -26,7 +26,7 @@ body {
   font-size: 100px;
   font-weight: 100;
   text-align: center;
-  color: rgba(175, 47, 47, 0.15);
+  color: #fff;
   -webkit-text-rendering: optimizeLegibility;
   -moz-text-rendering: optimizeLegibility;
   text-rendering: optimizeLegibility;
@@ -83,6 +83,22 @@ body {
   color: #61dafb;
 }
 
+.info {
+  text-align: center;
+  color: lightgrey;
+  font-size: 10px;
+  line-height: 1;
+}
+
+a {
+  color: lightgrey;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -91,3 +107,7 @@ body {
     transform: rotate(360deg);
   }
 }
+display: flex;
+flex-direction: column;
+
+
