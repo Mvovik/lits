@@ -1,20 +1,23 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class Checkbox extends Component {
-    render() {
-        const {onChecked} = this.props;
-        return (
-            <input className="App-input-checkbox" onClick={onChecked}   type="checkbox" />
-        );
-    }
+  render() {
+    const { onCompleted } = this.props;
+    return (
+      <input
+        className="App-input-checkbox"
+        onClick={onCompleted}
+        type="checkbox"
+      />
+    );
+  }
 }
 Checkbox.propTypes = {
-    onChecked: PropTypes.func.isRequired
+  onChecked: PropTypes.func.isRequired
 };
 Checkbox.defaultProps = {
-    onChecked: () => ({})
+  onChecked: () => ({})
 };
-
 
 export default Checkbox;

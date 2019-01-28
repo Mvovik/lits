@@ -6,16 +6,24 @@ import DeleteButton from '../DeleteButton';
 class List extends Component {
   todoListItem = (key, item) => {
     return (
-      <li className="App-todo-element" key={key} onClick={this.props.onDelete.bind(this, key, item)}>
-        <div className="App-checkbox-wrapper">
+      <li className="App-todo-element" key={key}>
+        <div
+          className={`App-checkbox-wrapper ${
+            item.completed ? 'completed' : ''
+          }`}
+        >
           <label className="App-todo-label">
-            <Checkbox />
+            <Checkbox onCompleted={this.props.onCompleted.bind(this, item)} />
             <span className="App-todo-box" />
           </label>
         </div>
-        <p className="App-todo-text">{item.value}</p>
+        <p className="App-todo-text">{`${item.value} - ${item.completed}`}</p>
         {/* <DeleteButton/> */}
-        <button type="button" className="App-delete-btn" />
+        <button
+          type="button"
+          className="App-delete-btn"
+          onClick={this.props.onDelete.bind(this, key, item)}
+        />
       </li>
     );
   };

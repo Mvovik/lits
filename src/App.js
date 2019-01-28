@@ -34,6 +34,22 @@ class App extends Component {
     let todoList = this.state.todoList.filter(todo => todo !== item);
     this.setState({ todoList });
   };
+
+  onCompleted = (item, event) => {
+    event.stopPropagation();
+    event.preventDefault();
+    let { todoList } = this.state;
+    console.log('item :', item);
+    function isCompleted(element) {
+      if (element === item) {
+        element.completed = true;
+        return element;
+      }
+    }
+    todoList.find(isCompleted);
+    this.setState({ todoList });
+  };
+
   onChange = event => {
     this.setState({ value: event.target.value });
   };
@@ -63,7 +79,11 @@ class App extends Component {
 
           {/* <Input ref={this.input} className="App-input" ></Input> */}
           {/* <Button value={'Add new'}></Button> */}
-          <List todoList={todoList} onDelete={this.onDelete} />
+          <List
+            todoList={todoList}
+            onDelete={this.onDelete}
+            onCompleted={this.onCompleted}
+          />
           {/* <Checkbox onClick = {this.onChecked} /> */}
         </form>
         <input type="button" value={'check'} onClick={this.onCheckProperty} />
