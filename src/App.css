@@ -91,3 +91,18 @@ body {
     transform: rotate(360deg);
   }
 }
+
+footer {
+  color: lightgray;
+  text-align: center;
+  font-size: 10px;
+  line-height: 1;
+  
+}
+a {
+  text-decoration: none;
+  color: lightgrey;
+}
+ a:hover{
+    text-decoration: underline;
+ }
