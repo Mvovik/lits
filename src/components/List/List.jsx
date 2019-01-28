@@ -13,7 +13,7 @@ class List extends Component {
             <span className="App-todo-box" />
           </label>
         </div>
-        <p className="App-todo-text">{item}</p>
+        <p className="App-todo-text">{item.value}</p>
         {/* <DeleteButton/> */}
         <button type="button" className="App-delete-btn" />
       </li>

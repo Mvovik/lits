@@ -21,9 +21,10 @@ class App extends Component {
   handleSubmit = event => {
     event.stopPropagation();
     event.preventDefault();
+    const { completed } = this.state;
     if (this.state.value) {
       this.setState(({ todoList, value }) => ({
-        todoList: [...todoList, [value, false]],
+        todoList: [...todoList, { value, completed }],
         value: ''
       }));
     }
