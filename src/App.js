@@ -9,35 +9,32 @@ class App extends Component {
   constructor(props) {
     super(props);
   }
-  
-input = React.createRef();
 
-state = {
-  value: '',
-  completed: false,
-  todoList: [["Hello, i am Michael", false], ["Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus quo id ad maxime expedita architecto, maiores quod. Sapiente quam dolorem dolore ipsa suscipit tenetur doloremque ut cum neque, repellendus maxime, eos quod debitis aliquam, provident, fugit ratione non sequi voluptate fuga quibusdam nihil pariatur quia aperiam quisquam. Similique voluptatum vero sunt enim, consequuntur optio. Laboriosam qui ab maxime, adipisci", false]]
-};
+  input = React.createRef();
+
+  state = {
+    value: '',
+    completed: false,
+    todoList: []
+  };
   componentDidMount() {}
   handleSubmit = event => {
+    event.stopPropagation();
     event.preventDefault();
     if (this.state.value) {
-      this.setState(({ todoList, value, completed }) => ({
-        todoList: [...todoList, [value, completed]],
+      this.setState(({ todoList, value }) => ({
+        todoList: [...todoList, [value, false]],
         value: ''
       }));
     }
-    
-  }
-
-  onDelete =(removedElement) => {
-    var newItems = this.state.todoList.filter( (item) => {
-      return item !== removedElement;
-    });
-    this.setState({ todoList: newItems});
   };
-  onChange = (event) => {
-    this.setState({value: event.target.value});
-    
+
+  onDelete = (key, item) => {
+    let todoList = this.state.todoList.filter(todo => todo !== item);
+    this.setState({ todoList });
+  };
+  onChange = event => {
+    this.setState({ value: event.target.value });
   };
 
   onChange = event => {
@@ -51,15 +48,21 @@ state = {
     const { todoList, value } = this.state;
     return (
       <div className="App">
-          <form className="App-form" onSubmit={this.handleSubmit}>
-            <header className="App-input-header">
-              <h1 className="App-todo-header">todos</h1>
-              <input placeholder="What needs to be done?" className="App-input-text" type="text" value={value} onChange={this.onChange} />
-            </header>
-          
-              {/* <Input ref={this.input} className="App-input" ></Input> */}
-            {/* <Button value={'Add new'}></Button> */}
-            <List todoList={todoList} onDelete = {this.onDelete.bind(this)}></List>   
+        <form className="App-form" onSubmit={this.handleSubmit}>
+          <header className="App-input-header">
+            <h1 className="App-todo-header">todos</h1>
+            <input
+              placeholder="What needs to be done?"
+              className="App-input-text"
+              type="text"
+              value={value}
+              onChange={this.onChange}
+            />
+          </header>
+
+          {/* <Input ref={this.input} className="App-input" ></Input> */}
+          {/* <Button value={'Add new'}></Button> */}
+          <List todoList={todoList} onDelete={this.onDelete} />
           {/* <Checkbox onClick = {this.onChecked} /> */}
         </form>
         <input type="button" value={'check'} onClick={this.onCheckProperty} />
