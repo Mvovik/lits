@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import './App.css';
 import Button from './component/Button';
 import List from './component/List';
-
+//import CrossIcon from
+//import FAIcon from './component/Icons/CrossIcon';
+import './component/Icons/CrossIcon';
+import CrossIcon from './component/Icons/CrossIcon';
+import ArrowIcon from './component/Icons/Arrow';
 class App extends Component {
   state = {
     value: '',
@@ -31,12 +35,15 @@ class App extends Component {
         <form onSubmit={this.handleSubmit}>
           <header>
             <h1>todos</h1>
+            <div>
+         <ArrowIcon /> </div>
             <input type="text" value={value} onChange={this.onChange} />
           </header>
           <section>
             <List todoList={todoList} />
           </section>
         </form>
+        
       </section>
     );
   }
