@@ -65,6 +65,8 @@ body {
   padding: 0;
 }
 
+
+
 /* Checkbox */
 
 .App-checkbox-wrapper {
@@ -157,7 +159,18 @@ body {
   background-repeat: no-repeat;
   background-position: center left;
 }
-.App-input-checkbox:checked + .App-todo-box:after {
+
+.App-todo-box {
+  position: relative;
+  display: block;
+  float: left;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 100%;
+  transition: 0.3s;
+}
+.box-completed:after {
   content: '';
   position: absolute;
   width: 25px;
@@ -167,15 +180,7 @@ body {
   border-left: 2px solid rgb(71, 221, 104);
   border-bottom: 2px solid rgb(71, 221, 104);
   transform: rotate(-55deg);
-}
-.App-todo-box {
-  position: relative;
-  display: block;
-  float: left;
-  width: 40px;
-  height: 40px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 100%;
+  transition: 0.3s;
 }
 
 .App-todo-text {
@@ -186,6 +191,12 @@ body {
   padding-bottom: 15px;
   font: 24px/1.4em Arial;
   color: #4d4d4d;
+  transition: 0.3s;
+}
+.completed {
+  transition: 0.3s;
+  text-decoration: line-through;
+  color: rgba(77, 77, 77, 0.2);
 }
 
 .App-delete-btn {

@@ -42,7 +42,9 @@ class App extends Component {
     console.log('item :', item);
     function isCompleted(element) {
       if (element === item) {
-        element.completed = true;
+        if (element.completed == false) {
+          element.completed = true;
+        } else element.completed = false;
         return element;
       }
     }
