@@ -32,13 +32,10 @@ class App extends Component {
     this.setState({value: event.target.value})
   }
 
-  onDelete = (itemToBeDeleted) => {
-    var newItems = this.state.todoList.filter( (item) => {
-      return item !== itemToBeDeleted
-    });
-
-    this.setState({ todoList: newItems});
-  }
+  onDelete = (key, item) => {
+    let todoList = this.state.todoList.filter(todo => todo !== item);
+    this.setState({ todoList });
+  };
 
   render() {
     const {todoList, value} = this.state;
@@ -51,7 +48,7 @@ class App extends Component {
               <input type="text" value={value} onChange={this.onChange} className="mainInput" placeholder={"What needs to be done?"} autoFocus />
             </label>
             <Button />
-            <List todoList={todoList} onDelete={this.onDelete.bind(this)} />
+            <List todoList={todoList} onDelete={this.onDelete} />
           </form>
         </div>
       </div>
