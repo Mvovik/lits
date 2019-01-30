@@ -1,18 +1,22 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 class Input extends Component {
-  render() {
-    return <input type="text" {...this.props} />;
-  }
+    componentDidMount() {
+    }
+
+    render() {
+        const {onClick, ref} = this.props;
+        return (
+            <input ref={ref} placeholder="write your todo" onClick={onClick}  type="text" />
+        );
+    }
 }
-
 Input.propTypes = {
-  onClick: PropTypes.func.isRequired
+    onClick: PropTypes.func.isRequired,
 };
-
 Input.defaultProps = {
-  onClick: () => ({})
+    onClick: () => ({})
 };
 
 export default Input;

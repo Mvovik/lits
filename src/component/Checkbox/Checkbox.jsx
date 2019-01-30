@@ -3,25 +3,21 @@ import PropTypes from 'prop-types';
 
 class Checkbox extends Component {
   render() {
-    const { onClick, value } = this.props;
+    const { onCompleted } = this.props;
     return (
       <input
-        className="toggle"
+        className="App-input-checkbox"
+        onClick={onCompleted}
         type="checkbox"
-        onClick={onClick}
-        value={value}
       />
     );
   }
 }
-
 Checkbox.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  value: PropTypes.string
+  onChecked: PropTypes.func.isRequired
 };
-
 Checkbox.defaultProps = {
-  onClick: () => ({})
+  onChecked: () => ({})
 };
 
 export default Checkbox;
