@@ -3,17 +3,19 @@ import PropTypes from 'prop-types';
 
 class Button extends Component {
     render() {
-        const {onClick} = this.props;
-        return <button type='submit' onClick={onClick} className="mainButton">add</button>;
+        const { value="Click", onSubmit } = this.props;
+        return <button type='submit' onClick={onClick} className="mainButton" onSubmit={onSubmit}>{value}</button>;
     }
 }
 
-Button.PropTypes = {
-    onClick: PropTypes.func.isRequired
+Button.propTypes = {
+    onClick: PropTypes.func.isRequired,
+    value: PropTypes.string
 };
 
 Button.defaultProps = {
     onClick: () => ({})
 };
+
 
 export default Button;

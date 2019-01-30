@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import Button from './component/Button';
-// import Input from './component/Input';
-//import Checkbox from './component/Checkbox';
+import Input from './component/Input';
+import Checkbox from './component/Checkbox';
 import List from './component/List';
-// import Icon from './List/icons8-ok.svg'
+import Icon from './List/icons8-ok.svg'
 
 class App extends Component {
 
