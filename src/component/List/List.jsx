@@ -1,45 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import CrossIcon from '../Icons/CrossIcon';
-import Checkbox from '../Checkbox/Checkbox';
-import Button from '../Button';
-import Input from '../Input';
+import ListItem from './ListItem';
 
-class List extends Component {
-state={
-  showMe: false
-}
-  todoListItem = (key, item) => {
-    return (
-      <li key={key}>
-        <Checkbox />
-        {this.onDoubleClick(item)}
-        <Button />
-      </li>
-    );
-  };
-
-onClick = event => {
-this.setState({showMe: true})
-}
-
-  onDoubleClick = (item) => {
-    if(this.state.showMe) { 
-       return (<Input value={item}/>);
-    } else { 
-        return (<label onClick={this.onClick}>{item}</label>);
-      } 
-  }
-
-  render() {
-    const { todoList } = this.props;
-    console.log('todoList :', todoList);
-    return (
-      <ul>
-        {todoList && todoList.map((item, key) => this.todoListItem(key, item))}
-      </ul>
-    );
-  }
+function List(props) {
+  const { todoList } = props;
+  return (
+    <ul>
+      {todoList &&
+        todoList.map((item, key) => <ListItem onSave={props.onSave}  item={{ item, key }} />)}
+    </ul>
+  );
 }
 
 List.propTypes = {

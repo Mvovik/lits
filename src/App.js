@@ -24,6 +24,12 @@ class App extends Component {
     this.setState({ value: event.target.value });
   };
 
+  onSave = (key = 0, value) => {
+    const { todoList } = this.state;
+    todoList[key] = value;
+    this.setState({ todoList });
+  };
+
   render() {
     const { todoList, value } = this.state;
     return (
@@ -34,7 +40,7 @@ class App extends Component {
             <input type="text" value={value} onChange={this.onChange} />
           </header>
           <section>
-            <List todoList={todoList} />
+            <List onSave={this.onSave} todoList={todoList} />
           </section>
         </form>
       </section>
