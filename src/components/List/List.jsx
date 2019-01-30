@@ -8,16 +8,16 @@ class List extends Component {
     return (
       <li className="App-todo-element" key={key}>
         <div
-          className={`App-checkbox-wrapper ${
-            item.completed ? 'completed' : ''
-          }`}
+          className="App-checkbox-wrapper"
         >
           <label className="App-todo-label">
             <Checkbox onCompleted={this.props.onCompleted.bind(this, item)} />
-            <span className="App-todo-box" />
+            <span className={`App-todo-box ${item.completed ? 'box-completed' : ''}`} />
           </label>
         </div>
-        <p className="App-todo-text">{`${item.value} - ${item.completed}`}</p>
+        <p className={`App-todo-text ${
+            item.completed ? 'completed' : ''
+          }`}>{`${item.value} - ${item.completed}`}</p>
         {/* <DeleteButton/> */}
         <button
           type="button"
