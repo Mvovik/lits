@@ -33,7 +33,6 @@ class App extends Component {
   }
 
   onDelete = (itemToBeDeleted) => {
-    //console.log(itemToBeDeleted)
     var newItems = this.state.todoList.filter( (item) => {
       return item !== itemToBeDeleted
     });
