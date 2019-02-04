@@ -1,24 +1,17 @@
 import React, { Component } from 'react';
 import './App.css';
-import Button from './components/Button';
-import Input from './components/Input';
-import Checkbox from './components/Checkbox';
 import List from './components/List';
+import Clear from './components/Clear';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  input = React.createRef();
-
   state = {
     value: '',
     completed: false,
     todoList: []
   };
+
   isToggleAll = false;
-  componentDidMount() {}
+
   handleSubmit = event => {
     event.stopPropagation();
     event.preventDefault();
@@ -30,7 +23,6 @@ class App extends Component {
       }));
     }
   };
-
   onDelete = (key, item) => {
     let todoList = this.state.todoList.filter(todo => todo !== item);
     this.setState({ todoList });
@@ -40,7 +32,6 @@ class App extends Component {
     event.stopPropagation();
     event.preventDefault();
     let { todoList } = this.state;
-    console.log('item :', item);
     function isCompleted(element) {
       if (element === item) {
         if (element.completed == false) {
@@ -53,46 +44,59 @@ class App extends Component {
     this.setState({ todoList });
   };
 
-  onToggleAll =(event) => {
+  onToggleAll = event => {
     event.preventDefault();
     event.stopPropagation();
     let todoList = this.state.todoList;
     console.log(todoList);
     if (this.isToggleAll == 0) {
-    todoList.map(element => {
-      if(element.completed == false)
-        element.completed = true;
+      todoList.map(element => {
+        if (element.completed == false) element.completed = true;
         console.log(element.completed);
-    });
-    this.isToggleAll = true;
-  }
-  else {
-    todoList.map(element => {
+      });
+      this.isToggleAll = true;
+    } else {
+      todoList.map(element => {
         element.completed = false;
-  });
-this.isToggleAll = false;
-  }
-    this.setState({todoList});
-  }
+      });
+      this.isToggleAll = false;
+    }
+    this.setState({ todoList });
+  };
   onChange = event => {
     this.setState({ value: event.target.value });
   };
 
-  onChange = event => {
-    this.setState({ value: event.target.value });
+  onClick = e => {
+    const { todoList } = this.props;
+    todoList.forEach(function(item, i, arr) {
+      if (item.completed === true) {
+        arr.splise(i, 1);
+      }
+    });
   };
-  onCheckProperty = () => {
-    console.log(this.state.todoList[0][1]);
+
+  clearCompleted = e => {
+    e.preventDefault();
+    const { todoList } = this.state;
+    const unCompleted = todoList.filter(item => item.completed !== true);
+    this.setState({ todoList: unCompleted });
   };
 
   render() {
-    const { todoList, value } = this.state;
+    const { todoList, value, completed } = this.state;
     return (
       <div className="App">
         <form className="App-form" onSubmit={this.handleSubmit}>
           <header className="App-input-header">
             <h1 className="App-todo-header">todos</h1>
-            <label htmlFor="" className={`App-toggle-all ${this.isToggleAll ? ' Toggle-all-completed' : ''}`}onClick={this.onToggleAll}></label>
+            <label
+              htmlFor=""
+              className={`App-toggle-all ${
+                this.isToggleAll ? ' Toggle-all-completed' : ''
+              }`}
+              onClick={this.onToggleAll}
+            />
             <input
               placeholder="What needs to be done?"
               className="App-input-text"
@@ -111,10 +115,11 @@ this.isToggleAll = false;
           />
           {/* <Checkbox onClick = {this.onChecked} /> */}
         </form>
-        <input type="button" value={'check'} onClick={this.onCheckProperty} />
+        <Clear todoList={todoList} onClear={this.clearCompleted} />
       </div>
     );
   }
 }
 
 export default App;
+
