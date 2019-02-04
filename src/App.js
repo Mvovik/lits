@@ -17,6 +17,7 @@ class App extends Component {
     completed: false,
     todoList: []
   };
+  isToggleAll = false;
   componentDidMount() {}
   handleSubmit = event => {
     event.stopPropagation();
@@ -52,6 +53,27 @@ class App extends Component {
     this.setState({ todoList });
   };
 
+  onToggleAll =(event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    let todoList = this.state.todoList;
+    console.log(todoList);
+    if (this.isToggleAll == 0) {
+    todoList.map(element => {
+      if(element.completed == false)
+        element.completed = true;
+        console.log(element.completed);
+    });
+    this.isToggleAll = true;
+  }
+  else {
+    todoList.map(element => {
+        element.completed = false;
+  });
+this.isToggleAll = false;
+  }
+    this.setState({todoList});
+  }
   onChange = event => {
     this.setState({ value: event.target.value });
   };
@@ -70,6 +92,7 @@ class App extends Component {
         <form className="App-form" onSubmit={this.handleSubmit}>
           <header className="App-input-header">
             <h1 className="App-todo-header">todos</h1>
+            <label htmlFor="" className={`App-toggle-all ${this.isToggleAll ? ' Toggle-all-completed' : ''}`}onClick={this.onToggleAll}></label>
             <input
               placeholder="What needs to be done?"
               className="App-input-text"
