@@ -1,25 +1,17 @@
 import React, { Component } from 'react';
 import './App.css';
-import Button from './components/Button';
-import Input from './components/Input';
-import Checkbox from './components/Checkbox';
 import List from './components/List';
 import Clear from './components/Clear';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  input = React.createRef();
-
   state = {
     value: '',
     completed: false,
     todoList: []
   };
+
   isToggleAll = false;
-  componentDidMount() {}
+
   handleSubmit = event => {
     event.stopPropagation();
     event.preventDefault();
@@ -40,29 +32,6 @@ class App extends Component {
     event.stopPropagation();
     event.preventDefault();
     let { todoList } = this.state;
-    console.log('item :', item);
-    function isCompleted(element) {
-      if (element === item) {
-        if (element.completed == false) {
-          element.completed = true;
-        } else element.completed = false;
-        return element;
-      }
-    }
-    todoList.find(isCompleted);
-    this.setState({ todoList });
-  };
-
-  onDelete = (key, item) => {
-    let todoList = this.state.todoList.filter(todo => todo !== item);
-    this.setState({ todoList });
-  };
-
-  onCompleted = (item, event) => {
-    event.stopPropagation();
-    event.preventDefault();
-    let { todoList } = this.state;
-    console.log('item :', item);
     function isCompleted(element) {
       if (element === item) {
         if (element.completed == false) {
@@ -98,18 +67,20 @@ class App extends Component {
     this.setState({ value: event.target.value });
   };
 
-  onChange = event => {
-    this.setState({ value: event.target.value });
-  };
-  onCheckProperty = () => {
-    console.log(this.state.todoList[0][1]);
+  onClick = e => {
+    const { todoList } = this.props;
+    todoList.forEach(function(item, i, arr) {
+      if (item.completed === true) {
+        arr.splise(i, 1);
+      }
+    });
   };
 
-  onChange = event => {
-    this.setState({ value: event.target.value });
-  };
-  onCheckProperty = () => {
-    console.log(this.state.todoList[0][1]);
+  clearCompleted = e => {
+    e.preventDefault();
+    const { todoList } = this.state;
+    const unCompleted = todoList.filter(item => item.completed !== true);
+    this.setState({ todoList: unCompleted });
   };
 
   render() {
@@ -144,8 +115,7 @@ class App extends Component {
           />
           {/* <Checkbox onClick = {this.onChecked} /> */}
         </form>
-        <input type="button" value={'check'} onClick={this.onCheckProperty} />
-        <Clear todoList={todoList} />
+        <Clear todoList={todoList} onClear={this.clearCompleted} />
       </div>
     );
   }
