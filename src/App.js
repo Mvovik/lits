@@ -4,6 +4,7 @@ import Button from './components/Button';
 import Input from './components/Input';
 import Checkbox from './components/Checkbox';
 import List from './components/List';
+import Footer from './components/Footer';
 
 class App extends Component {
   constructor(props) {
@@ -81,9 +82,6 @@ this.isToggleAll = false;
   onChange = event => {
     this.setState({ value: event.target.value });
   };
-  onCheckProperty = () => {
-    console.log(this.state.todoList[0][1]);
-  };
 
   render() {
     const { todoList, value } = this.state;
@@ -111,7 +109,7 @@ this.isToggleAll = false;
           />
           {/* <Checkbox onClick = {this.onChecked} /> */}
         </form>
-        <input type="button" value={'check'} onClick={this.onCheckProperty} />
+        <Footer/>
       </div>
     );
   }

@@ -258,3 +258,71 @@ body {
 .Toggle-all-completed:before {
   color: #4d4d4d;
 }
+
+/* Footer */
+
+.App-footer {
+  position: relative;
+  width: 520px;
+  height: 20px;
+  padding: 10px 15px;
+  border-top: 1px solid #e6e6e6;
+  background: #fff;
+  text-align: center;
+  color: #777;
+  font-size: 16px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 
+              0 8px 0 -3px #f6f6f6, 
+              0 9px 1px -3px rgba(0, 0, 0, 0.2),
+              0 16px 0 -6px #f6f6f6, 
+              0 17px 2px -6px rgba(0, 0, 0, 0.2);
+}
+.App-todo-count {
+  float: left;
+  margin-right: 35px;
+  
+}
+.App-todo-count span {
+  
+}
+
+.App-filters {
+  display: block;
+  position: absolute;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  right: 0;
+  left: 0;
+}
+.App-filters ul {
+  
+}
+.App-filters li{
+  display: inline-block;
+  list-style-type: none;
+  margin-right: 10px;
+  
+}
+.App-filters li a {
+  text-decoration: none;
+  color: #777;
+  margin: 3px 3px;
+  padding: 3px 7px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+}
+.App-filters li a:hover {
+  border-color:rgba(175, 47, 47, 0.1);
+}
+.App-filters li a.selected {
+  border-color: rgba(175, 47, 47, 0.2);
+}
+
+
+
+
+
+
+
+
