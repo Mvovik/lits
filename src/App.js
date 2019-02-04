@@ -34,10 +34,7 @@ class App extends Component {
     let { todoList } = this.state;
     function isCompleted(element) {
       if (element === item) {
-        if (element.completed == false) {
-          element.completed = true;
-        } else element.completed = false;
-        return element;
+        return (element.completed = !item.completed);
       }
     }
     todoList.find(isCompleted);
