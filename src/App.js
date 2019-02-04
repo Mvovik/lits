@@ -5,6 +5,7 @@ import List from './component/List';
 import Clear from './component/Clear';
 import Input from './component/Input';
 import Checkbox from './component/Checkbox';
+//import Footer from './component/Footer';
 
 class App extends Component {
   constructor(props) {
@@ -16,7 +17,8 @@ class App extends Component {
   state = {
     value: '',
     completed: false,
-    todoList: []
+    todoList: [],
+    //footer: All, Active, Comleted
 
   };
   componentDidMount() {}
@@ -52,6 +54,16 @@ class App extends Component {
     }
     todoList.find(isCompleted);
     this.setState({ todoList });
+  };
+
+  onClear = () => {
+      let { todoList } = this.state;
+      todoList.forEach(function(item, i, arr){
+            if(item.completed === true) {
+              arr.splice(i,1)
+            }
+          });
+      this.setState({ todoList });
   };
 
   onChange = event => {
@@ -91,11 +103,13 @@ class App extends Component {
         {/* <Checkbox onClick = {this.onChecked} /> */}
       </form>
       <input type="button" value={'check'} onClick={this.onCheckProperty} />
-      <Clear todoList={todoList} />
-    </div>
+      <Clear todoList={todoList} onClear={this.onClear} completed={true} />
+       </div>
+
   );
 }
 }
 
 
 export default App;
+
