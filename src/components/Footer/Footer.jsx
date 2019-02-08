@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Clear from '../Clear';
 
 class Footer extends Component {
     state = {
@@ -14,6 +15,12 @@ class Footer extends Component {
         return ((value == this.state.selected) ? 'selected' : '');
     }
     render() {
+        let showClear = null;
+        let clear = this.props.todoList.some((item) => item.completed == true);
+        console.log("clear: ", clear);
+        if (clear) {
+            showClear = <Clear todoList={this.props.todoList} onClear={this.props.onClear} /> ;
+        };
         return (
             <footer className="App-footer">
                 <span className="App-todo-count">
@@ -44,7 +51,8 @@ class Footer extends Component {
                         </a>
                         <span></span>
                         </li>
-                </ul>     
+                </ul>  
+                  {showClear}
             </footer>
         );
     }

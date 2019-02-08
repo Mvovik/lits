@@ -14,7 +14,7 @@ class App extends Component {
   state = {
     value: '',
     completed: false,
-    todoList: [],
+    todoList: [{value:"one", completed: false}],
     filter: 'all'
   };
   isToggleAll = false;
@@ -48,9 +48,7 @@ class App extends Component {
     console.log('item :', item);
     function isCompleted(element) {
       if (element === item) {
-        if (element.completed == false) {
-          element.completed = true;
-        } else element.completed = false;
+        element.completed = !element.completed;
         return element;
       }
     }
@@ -58,15 +56,14 @@ class App extends Component {
     this.setState({ todoList });
   };
 
-  onToggleAll =(event) => {
+  onToggleAll = (event) => {
     event.preventDefault();
     event.stopPropagation();
     let todoList = this.state.todoList;
     console.log(todoList);
-    if (this.isToggleAll == 0) {
+    if (this.isToggleAll == false) {
     todoList.map(element => {
-      if(element.completed == false)
-        element.completed = true;
+      element.completed = true;
         console.log(element.completed);
     });
     this.isToggleAll = true;
@@ -79,25 +76,46 @@ this.isToggleAll = false;
   }
     this.setState({todoList});
   }
+
   onChange = event => {
     this.setState({ value: event.target.value });
   };
 
+  clearCompleted = e => {
+    e.preventDefault();
+    const { todoList } = this.state;
+    const unCompleted = todoList.filter(item => item.completed !== true);
+    this.setState({ todoList: unCompleted });
+  };
 
   render() {
     const { todoList, value } = this.state;
     let filteringList = this.state.todoList;
+    let footer, showToggle = null;
     if (this.state.filter != 'all') {
     filteringList = filteringList.filter((item) => item.completed == this.state.filter);
     }
     let leftCount = this.state.todoList.filter((item) => item.completed == false);
     console.log(leftCount.length);
+
+    if (todoList.length) {
+      footer = <Footer onChangeFilter={this.changeFilter}
+      leftCount={leftCount.length}
+      todoList={todoList}
+      onClear={this.clearCompleted}/>
+    };
+    if (todoList.length > 0) {
+          showToggle = <label htmlFor="" 
+                              className={`App-toggle-all ${this.isToggleAll ? ' Toggle-all-completed' : ''}`}
+                              onClick={this.onToggleAll}>
+                        </label> ;
+        };
     return (
       <div className="App">
         <form className="App-form" onSubmit={this.handleSubmit}>
           <header className="App-input-header">
             <h1 className="App-todo-header">todos</h1>
-            <label htmlFor="" className={`App-toggle-all ${this.isToggleAll ? ' Toggle-all-completed' : ''}`}onClick={this.onToggleAll}></label>
+            {showToggle}
             <input
               placeholder="What needs to be done?"
               className="App-input-text"
@@ -113,8 +131,7 @@ this.isToggleAll = false;
             onCompleted={this.onCompleted}
           />
         </form>
-        <Footer onChangeFilter={this.changeFilter}
-                leftCount={leftCount.length}/>
+        {footer}
         <Info/>
       </div>
     );

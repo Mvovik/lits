@@ -46,7 +46,7 @@ body {
   position: absolute;
   display: block;
   width: 100%;
-  top: -175px;
+  top: -135px;
   font-size: 100px;
   font-weight: 400;
   text-align: center;
@@ -275,29 +275,27 @@ body {
               0 8px 0 -3px #f6f6f6, 
               0 9px 1px -3px rgba(0, 0, 0, 0.2),
               0 16px 0 -6px #f6f6f6, 
-              0 17px 2px -6px rgba(0, 0, 0, 0.2);
+              0 17px 2px -6px rgba(0, 0, 0, 0.2),
+              0 4px 4px 0 rgba(0, 0, 0, 0.2), 
+              0 28px 50px 0 rgba(0, 0, 0, 0.2);
+
 }
 .App-todo-count {
   float: left;
   margin-right: 35px;
   
 }
-.App-todo-count span {
-  
-}
+
 
 .App-filters {
   display: block;
   position: absolute;
-  width: 100%;
+  width: 50%;
   margin: 0;
   padding: 0;
-  right: 0;
-  left: 0;
+  margin-left: 110px;
 }
-.App-filters ul {
-  
-}
+
 .App-filters li{
   display: inline-block;
   list-style-type: none;
@@ -338,6 +336,25 @@ body {
 }
 .App-info a:hover {
   text-decoration: underline;
+}
+
+/* Clear completed button */
+
+.clear-completed {
+  display: inline-block;
+  float: right;
+}
+.clear-completed button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: #777;
+  font-size: 16px;
+  transition: 0.3s;
+}
+.clear-completed button:hover {
+  text-decoration: underline;
+  transition: 0.3s;
 }
 
 
