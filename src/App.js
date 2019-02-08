@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import Button from './components/Button';
-import Input from './components/Input';
-import Checkbox from './components/Checkbox';
 import List from './components/List';
 import Footer from './components/Footer';
+import Info from './components/Info/Info';
 
 class App extends Component {
   constructor(props) {
@@ -16,9 +14,15 @@ class App extends Component {
   state = {
     value: '',
     completed: false,
-    todoList: []
+    todoList: [],
+    filter: 'all'
   };
   isToggleAll = false;
+
+  changeFilter = (filter) => {
+    this.setState({filter: filter});
+  };
+
   componentDidMount() {}
   handleSubmit = event => {
     event.stopPropagation();
@@ -79,12 +83,15 @@ this.isToggleAll = false;
     this.setState({ value: event.target.value });
   };
 
-  onChange = event => {
-    this.setState({ value: event.target.value });
-  };
 
   render() {
     const { todoList, value } = this.state;
+    let filteringList = this.state.todoList;
+    if (this.state.filter != 'all') {
+    filteringList = filteringList.filter((item) => item.completed == this.state.filter);
+    }
+    let leftCount = this.state.todoList.filter((item) => item.completed == false);
+    console.log(leftCount.length);
     return (
       <div className="App">
         <form className="App-form" onSubmit={this.handleSubmit}>
@@ -99,17 +106,16 @@ this.isToggleAll = false;
               onChange={this.onChange}
             />
           </header>
-
-          {/* <Input ref={this.input} className="App-input" ></Input> */}
-          {/* <Button value={'Add new'}></Button> */}
           <List
-            todoList={todoList}
+            todoList={filteringList}
+            leftCount={leftCount.length}
             onDelete={this.onDelete}
             onCompleted={this.onCompleted}
           />
-          {/* <Checkbox onClick = {this.onChecked} /> */}
         </form>
-        <Footer/>
+        <Footer onChangeFilter={this.changeFilter}
+                leftCount={leftCount.length}/>
+        <Info/>
       </div>
     );
   }

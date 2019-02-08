@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-function Indo() {
+function Info() {
     return (
-        <footer>
+        <footer className="App-info">
             <p>Double-click to edit a todo</p>
-            <p>"Created by " <a href="">LITS students</a></p>
-            <p> <a href=""></a></p>
+            <p>Created by  <a href="#">LITS students</a></p>
+            <p>Part of sonething more <a href=""></a></p>
         </footer>
     );
 }
 
-export default AudioContextInfo;
+export default Info;

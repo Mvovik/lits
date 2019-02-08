@@ -319,10 +319,26 @@ body {
   border-color: rgba(175, 47, 47, 0.2);
 }
 
+/* Info Footer */
 
+.App-info {
+  width: 100%;
+  text-align: center;
+  font-size: 10px;
+  margin: 65px auto;
+  color: #bfbfbf;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  line-height: 1.4em;
+}
 
-
-
+.App-info a {
+  text-decoration: none;
+  color: #bfbfbf;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+.App-info a:hover {
+  text-decoration: underline;
+}
 
 
 
