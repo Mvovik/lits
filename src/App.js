@@ -14,10 +14,11 @@ class App extends Component {
   state = {
     value: '',
     completed: false,
-    todoList: [{value:"one", completed: false}],
+    todoList: [],
     filter: 'all'
   };
   isToggleAll = false;
+  
 
   changeFilter = (filter) => {
     this.setState({filter: filter});
@@ -86,6 +87,7 @@ this.isToggleAll = false;
     const { todoList } = this.state;
     const unCompleted = todoList.filter(item => item.completed !== true);
     this.setState({ todoList: unCompleted });
+    this.isToggleAll = false;
   };
 
   render() {

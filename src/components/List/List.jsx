@@ -17,8 +17,7 @@ class List extends Component {
         </div>
         <p className={`App-todo-text ${
             item.completed ? 'completed' : ''
-          }`}>{`${item.value} - ${item.completed}`}</p>
-        {/* <DeleteButton/> */}
+          }`}>{item.value}</p>
         <button
           type="button"
           className="App-delete-btn"
